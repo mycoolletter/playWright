@@ -1,0 +1,17 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Automated Software testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:e2e": "playwright test --config=e2e.config.ts --project=Chromium",
+    "test:e2e-Bank": "playwright test --config=e2e-Bank.config.ts --project=Chromium"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.31.2",
+    "prettier": "^2.8.6"
+  }
+}
