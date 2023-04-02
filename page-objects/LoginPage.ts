@@ -13,11 +13,14 @@ export class LoginPage {
     this.submitButton = page.locator("text=Sign in");
     this.errorMessage = page.locator(".alert-error");
   }
-  async login(username: string, password: string) {
+  async login(username: string, password: string, positivCase?:boolean) {
     await this.userNameInput.type(username);
     await this.passwordInput.type(password);
     await this.submitButton.click();
-    // await this.page.goto("http://zero.webappsecurity.com/bank/transfer-funds.html");
+    if(positivCase){
+    await this.page.goto("http://zero.webappsecurity.com/bank/transfer-funds.html");
+    }
+ 
 
   }
   async assertErrorMessage(){

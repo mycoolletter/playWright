@@ -9,7 +9,7 @@ const config: PlaywrightTestConfig = {
     actionTimeout: 10000,
     ignoreHTTPSErrors: true,
     video: "off",
-    screenshot: "off",
+    screenshot: "only-on-failure",
   },
   projects: [
     { name: "Chromium", use: { browserName: "chromium" } },

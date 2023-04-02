@@ -1,4 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { Tab } from "../../utils/constants";
 
 export class Navbar {
   readonly page: Page;
@@ -19,24 +20,24 @@ export class Navbar {
     this.onlineStatements = page.locator("#online_statements_tab");
   }
 
-  async clickOnTab(tabName) {
+  async clickOnTab(tabName : Tab) {
     switch (tabName) {
-      case "Account Summary":
+      case Tab.AccountSummary:
         await this.accountSummary.click();
         break;
-      case "Account Activity":
+      case Tab.AccountActivity:
         await this.accountActivity.click();
         break;
-      case "Transfer Funds":
+      case Tab.TransferFunds:
         await this.transferFunds.click();
         break;
-      case "Pay Bills":
+      case Tab.PayBills:
         await this.payBills.click();
         break;
-      case "My Money App":
+      case Tab.MyMoneyApp:
         await this.myMoneyApp.click();
         break;
-      case "Online Statements":
+      case Tab.OnlineStatements:
         await this.onlineStatements.click();
         break;
       default:

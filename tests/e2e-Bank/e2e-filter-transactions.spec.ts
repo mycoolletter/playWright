@@ -1,16 +1,25 @@
 import { test, expect } from '@playwright/test'
+import { Navbar } from '../../page-objects/components/NavBar';
+import {HomePage} from '../../page-objects/HomePage'
+import {LoginPage} from '../../page-objects/LoginPage'
+import { Tab } from '../../utils/constants';
 
 test.describe('Filter Transactions', () => {
+  let homePage: HomePage;
+  let loginPage: LoginPage;
+  let navbar: Navbar;
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://zero.webappsecurity.com/index.html')
-    await page.click('#signin_button')
-    await page.type('#user_login', 'username')
-    await page.type('#user_password', 'password')
-    await page.click('text=Sign in')
+    homePage = new HomePage(page);
+    loginPage = new LoginPage(page);
+    navbar = new Navbar(page)
+
+    await homePage.visit();
+    await homePage.clickOnSignIn();
+    await loginPage.login( 'username','password',true)
   })
 
   test('Verify the results for each account', async ({ page }) => {
-    await page.click('#account_activity_tab')
+    await navbar.clickOnTab(Tab.AccountActivity)
     await page.selectOption('#aa_accountId', '2')
     const checkingAccount = await page.locator(
       '#all_transactions_for_account tbody tr'
