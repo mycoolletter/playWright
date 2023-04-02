@@ -13,11 +13,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "15.13.0"
-      - uses: microsoft/playwright-github-action@v1
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
       - name: Install dependencies and run tests
-        run: npm install && npx playwright test
+        run: npm install 
+      - name: Install play wright
+        run: npm install @playwright/test && npx playwright install 
       - uses: actions/upload-artifact@v2
         if: always()
         with:
