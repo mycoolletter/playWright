@@ -16,5 +16,6 @@ const config: PlaywrightTestConfig = {
     { name: "Firefox", use: { browserName: "firefox" } },
     { name: "Webkit", use: { browserName: "webkit" } },
   ],
+  reporter: "html"
 };
 export default config;
