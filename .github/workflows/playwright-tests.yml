@@ -1,21 +1,26 @@
-name: Run Playwright Tests
-
+# This is a basic workflow that is manually triggered
 on:
   push:
-    branches: master
-  pull_request:
-    branches: master
+    branches:
+      - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  e2e-tests:
+    runs-on: windows-latest
+
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v2 # Update from v1 to v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: '16.x' # Update to use Node.js 16.x
-      - name: Install Dependencies
-        run: npm install
-      - name: Run Playwright Tests
-        run: npm test
+          node-version: "15.13.0"
+      - uses: microsoft/playwright-github-action@v1
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Install dependencies and run tests
+        run: npm install && npx playwright test
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+         name: playwright-report
+         path: playwright-report/
+         retention-days: 30
